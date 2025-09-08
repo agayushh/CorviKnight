@@ -3,7 +3,7 @@ document.getElementById("fill")?.addEventListener("click", () => {
     if (tabs[0].id) {
       chrome.scripting.executeScript({
         target: { tabId: tabs[0].id },
-        files: ["content.ts"]
+        files: ["content.js"]
       });
     }
   });

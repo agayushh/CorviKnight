@@ -33,3 +33,9 @@ chrome.storage.sync.get(
     console.log("Detected fields:", fields);
   }
 );
+
+console.log("Content script injected");
+const input = document.querySelector<HTMLInputElement>("input[name = 'username']");
+if(input){
+  input.value = "Ayush";
+}
