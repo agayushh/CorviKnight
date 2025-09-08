@@ -25,17 +25,35 @@ const extractFormFields = (): FormField[] => {
   });
   return fields;
 };
+
+const fillForm = (fields: FormField[], userData: UserData) => {
+  fields.forEach((field) => {
+    const value =
+      (field.name && userData[field.name]) ||
+      (field.label && userData[field.label]);
+    if (value) {
+      const inputEl = document.querySelector<HTMLInputElement>(
+        `[name='${field.name}']`
+      );
+      if (inputEl) inputEl.value = value as string;
+    }
+  });
+};
+
 chrome.storage.sync.get(
   ["userData"],
   async ({ userData }: { userData: UserData }) => {
     if (!userData) return;
     const fields = extractFormFields();
     console.log("Detected fields:", fields);
+    fillForm(fields, userData);
   }
 );
 
 console.log("Content script injected");
-const input = document.querySelector<HTMLInputElement>("input[name = 'username']");
-if(input){
+const input = document.querySelector<HTMLInputElement>(
+  "input[name = 'username']"
+);
+if (input) {
   input.value = "Ayush";
 }

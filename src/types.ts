@@ -6,6 +6,7 @@ export interface UserData {
   education?: string;
   skills?: string[];
   coverLetter?: string;
+  [key: string]: string | string[] | undefined;
 }
 
 export interface FormField {

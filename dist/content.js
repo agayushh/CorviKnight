@@ -29,11 +29,23 @@ const extractFormFields = () => {
     });
     return fields;
 };
+const fillForm = (fields, userData) => {
+    fields.forEach((field) => {
+        const value = (field.name && userData[field.name]) ||
+            (field.label && userData[field.label]);
+        if (value) {
+            const inputEl = document.querySelector(`[name='${field.name}']`);
+            if (inputEl)
+                inputEl.value = value;
+        }
+    });
+};
 chrome.storage.sync.get(["userData"], (_a) => __awaiter(void 0, [_a], void 0, function* ({ userData }) {
     if (!userData)
         return;
     const fields = extractFormFields();
     console.log("Detected fields:", fields);
+    fillForm(fields, userData);
 }));
 console.log("Content script injected");
 const input = document.querySelector("input[name = 'username']");
