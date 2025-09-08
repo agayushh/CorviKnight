@@ -1,0 +1,35 @@
+import { UserData, FormField } from "./types";
+
+const extractFormFields = (): FormField[] => {
+  const fields: FormField[] = [];
+  document.querySelectorAll("input, textarea, select").forEach((input) => {
+    const inputElement = input as HTMLInputElement;
+    const label =
+      inputElement.closest("label")?.innerText ||
+      (
+        document.querySelector(
+          `label[for='${inputElement.id}']`
+        ) as HTMLLabelElement
+      )?.innerText ||
+      inputElement.getAttribute("placeholder") ||
+      inputElement.getAttribute("name") ||
+      "";
+    fields.push({
+      id: inputElement.id,
+      name: inputElement.name,
+      placeholder: (input as HTMLInputElement).placeholder || "",
+
+      label,
+      type: (input as HTMLInputElement).type,
+    });
+  });
+  return fields;
+};
+chrome.storage.sync.get(
+  ["userData"],
+  async ({ userData }: { userData: UserData }) => {
+    if (!userData) return;
+    const fields = extractFormFields();
+    console.log("Detected fields:", fields);
+  }
+);
