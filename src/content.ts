@@ -29,12 +29,12 @@ const extractFormFields = (): FormField[] => {
 const fillForm = (fields: FormField[], userData: UserData) => {
   fields.forEach((field) => {
     const value =
-      (field.name && userData[field.name]) ||
-      (field.label && userData[field.label]);
+      (field.name && userData[field.name as keyof UserData]) ||
+      (field.label && userData[field.label as keyof UserData]);
     if (value) {
       const inputEl = document.querySelector<HTMLInputElement>(
         `[name='${field.name}']`
-      );
+        ) || document.getElementById(field.id) as HTMLInputElement;
       if (inputEl) inputEl.value = value as string;
     }
   });

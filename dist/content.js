@@ -34,7 +34,7 @@ const fillForm = (fields, userData) => {
         const value = (field.name && userData[field.name]) ||
             (field.label && userData[field.label]);
         if (value) {
-            const inputEl = document.querySelector(`[name='${field.name}']`);
+            const inputEl = document.querySelector(`[name='${field.name}']`) || document.getElementById(field.id);
             if (inputEl)
                 inputEl.value = value;
         }
