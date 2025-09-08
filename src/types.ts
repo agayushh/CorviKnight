@@ -16,3 +16,13 @@ export interface FormField {
   placeholder?: string;
   type?: string;
 }
+
+export const FIELD_ALIASES: Record<string, string[]> = {
+  name: ["full name", "your name", "candidate name"],
+  email: ["email address", "e-mail", "mail"],
+  phone: ["phone number", "mobile", "contact number"],
+  address: ["home address", "location"],
+  education: ["qualification", "degree", "school", "college"],
+  skills: ["tech stack", "expertise", "abilities"],
+  coverLetter: ["motivation", "statement", "summary"],
+};
