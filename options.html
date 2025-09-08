@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Extension Options</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 20px;
+        background: #121212;
+        color: #fff;
+      }
+      label {
+        display: block;
+        margin-top: 10px;
+        font-weight: bold;
+      }
+      input,
+      textarea {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+        border-radius: 5px;
+        border: 1px solid #555;
+        background: #1e1e1e;
+        color: #fff;
+      }
+      button {
+        margin-top: 15px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        background: #4caf50;
+        color: white;
+        cursor: pointer;
+      }
+      button:hover {
+        background: #45a049;
+      }
+    </style>
+  </head>
+  <body>
+    <h2>Save Your Resume Data</h2>
+
+    <label for="name">Name</label>
+    <input type="text" id="name" placeholder="Enter your full name" />
+
+    <label for="email">Email</label>
+    <input type="email" id="email" placeholder="Enter your email" />
+
+    <label for="phone">Phone</label>
+    <input type="tel" id="phone" placeholder="Enter your phone number" />
+
+    <label for="address">Address</label>
+    <input type="text" id="address" placeholder="Enter your address" />
+
+    <label for="education">Education</label>
+    <input
+      type="text"
+      id="education"
+      placeholder="Enter your education details"
+    />
+
+    <label for="skills">Skills (comma separated)</label>
+    <input type="text" id="skills" placeholder="e.g. React, Node.js, SQL" />
+
+    <label for="coverLetter">Cover Letter</label>
+    <textarea
+      id="coverLetter"
+      rows="5"
+      placeholder="Paste your cover letter"
+    ></textarea>
+
+    <button id="save">Save</button>
+
+    <script src="options.js"></script>
+  </body>
+</html>

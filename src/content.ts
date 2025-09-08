@@ -1,4 +1,27 @@
-import { UserData, FormField } from "./types";
+import { UserData, FormField, FIELD_ALIASES } from "./types";
+const normalize = (text: string) => {
+  return text
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "")
+    .trim();
+};
+const matchField = (
+  field: FormField,
+  userData: UserData
+): string | undefined => {
+  const fieldKey = normalize(
+    field.name || field.label || field.placeholder || ""
+  );
+  if (userData[fieldKey as keyof UserData]) {
+    return userData[fieldKey as keyof UserData] as string;
+  }
+  for (const [key, aliases] of Object.entries(FIELD_ALIASES)) {
+    if (aliases.some((alias) => fieldKey.includes(normalize(alias)))) {
+      return userData[key as keyof UserData] as string;
+    }
+  }
+  return undefined;
+};
 
 const extractFormFields = (): FormField[] => {
   const fields: FormField[] = [];
@@ -32,9 +55,9 @@ const fillForm = (fields: FormField[], userData: UserData) => {
       (field.name && userData[field.name as keyof UserData]) ||
       (field.label && userData[field.label as keyof UserData]);
     if (value) {
-      const inputEl = document.querySelector<HTMLInputElement>(
-        `[name='${field.name}']`
-        ) || document.getElementById(field.id) as HTMLInputElement;
+      const inputEl =
+        document.querySelector<HTMLInputElement>(`[name='${field.name}']`) ||
+        (document.getElementById(field.id) as HTMLInputElement);
       if (inputEl) inputEl.value = value as string;
     }
   });
@@ -51,9 +74,3 @@ chrome.storage.sync.get(
 );
 
 console.log("Content script injected");
-const input = document.querySelector<HTMLInputElement>(
-  "input[name = 'username']"
-);
-if (input) {
-  input.value = "Ayush";
-}

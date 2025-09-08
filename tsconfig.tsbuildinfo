@@ -1,0 +1,1 @@
+{"root":["./src/background.ts","./src/content.ts","./src/index.ts","./src/options.ts","./src/popup.ts","./src/types.ts"],"version":"5.8.3"}

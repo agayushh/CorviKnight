@@ -4,13 +4,14 @@
   "version": "1.0.0",
   "description": "AI-powered autofill for forms and job applications.",
   "permissions": ["storage", "scripting", "activeTab"],
+  "host_permission": ["https://jsonplaceholder.typicode.com/*"],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "dist/background.js"
   },
   "content_scripts": [
     {
       "matches": ["<all_urls>"],
-      "js": ["content.js"]
+      "js": ["dist/content.js"]
     }
   ],
   "action": {

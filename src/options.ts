@@ -23,6 +23,16 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   );
 });
+document.addEventListener("DOMContentLoaded", async () => {
+  console.log("popup loaded");
+  try {
+    const res = await fetch("https://jsonplaceholder.typicode.com/todos/1");
+    const data = await res.json();
+    console.log("API data:", data);
+  } catch (err) {
+    console.error("fetch failed", err);
+  }
+});
 
 document.getElementById("save")?.addEventListener("click", () => {
   const userData: UserData = {

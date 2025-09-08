@@ -1,5 +1,4 @@
 "use strict";
-var _a;
 Object.defineProperty(exports, "__esModule", { value: true });
 document.addEventListener("DOMContentLoaded", () => {
     chrome.storage.sync.get(["userData"], ({ userData }) => {
@@ -21,7 +20,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     });
 });
-(_a = document.getElementById("save")) === null || _a === void 0 ? void 0 : _a.addEventListener("click", () => {
+document.getElementById("save")?.addEventListener("click", () => {
     const userData = {
         name: document.getElementById("name").value,
         email: document.getElementById("email").value,
